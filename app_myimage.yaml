@@ -4,7 +4,7 @@ metadata:
   name: myimage
   namespace: argocd
 spec:
-  project: argocd_apps
+  project: argocdapps
   source:
     repoURL: https://github.com/rodrigosandrin/myimage.git
     targetRevision: HEAD
