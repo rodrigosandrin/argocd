@@ -17,7 +17,7 @@ spec:
       source:
         repoURL: https://github.com/rodrigosandrin/argocd.git
         targetRevision: HEAD
-        path: myimage/overlay/{{metadata.labels.env}}
+        path: myimage/overlay/{{metadata.labels.env}}/
       destination:
         # destination server will be filled per-cluster by the generator
         server: '{{server}}'
