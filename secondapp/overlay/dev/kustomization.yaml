@@ -2,5 +2,5 @@ resources:
   - ../../base
 
 images:
-- name: artifactory.oneeuronet.com/oen-oneeuronet-images/secondapp:green
-  newTag: "1.0.0"
+- name: artifactory.oneeuronet.com/oen-oneeuronet-images/secondapp
+  newTag: "blue"
