@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: myimage-appset
+  namespace: argocd
+spec:
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      # each generated Application will be named <cluster-name>-myimage
+      name: 'myimage-{{metadata.labels.env}}-{{name}}'
+      labels:
+        app.kubernetes.io/name: myimage
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/rodrigosandrin/argocd.git
+        targetRevision: HEAD
+        path: myimage/overlay/{{metadata.labels.env}}
+      destination:
+        # destination server will be filled per-cluster by the generator
+        server: '{{server}}'
+        namespace: myimage
