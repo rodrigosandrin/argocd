@@ -12,7 +12,7 @@ spec:
       name: 'myimage-{{metadata.labels.env}}-{{name}}'
       labels:
         app.kubernetes.io/name: myimage
-        env: {{metadata.labels.env}}
+        env: '{{metadata.labels.env}}'
     spec:
       project: default
       source:
