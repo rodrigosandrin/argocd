@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: secondapp
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secondapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: secondapp
+  template:
+    metadata:
+      labels:
+        app: secondapp
+    spec:
+      containers:
+      - name: secondapp
+        image: artifactory.oneeuronet.com/oen-oneeuronet-images/myimage:red
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: secondapp-svc
+spec:
+  selector:
+    app: secondapp
+  ports:
+  - port: 80
+    targetPort: 80
