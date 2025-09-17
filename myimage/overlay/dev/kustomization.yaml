@@ -3,4 +3,4 @@ resources:
 
 images:
 - name: artifactory.oneeuronet.com/oen-oneeuronet-images/myimage
-  newTag: "blue"
+  newTag: "green"
