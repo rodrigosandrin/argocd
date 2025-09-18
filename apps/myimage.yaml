@@ -16,7 +16,7 @@ spec:
         app.kubernetes.io/name: myimage
         env: '{{.metadata.labels.env}}'
     spec:
-      project: default
+      project: dev
       source:
         repoURL: https://github.com/rodrigosandrin/argocd.git
         targetRevision: '{{.metadata.labels.branch}}'
