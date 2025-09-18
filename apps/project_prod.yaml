@@ -12,9 +12,11 @@ spec:
   - group: '*'
     kind: '*'
   roles:
-  - name: prod-project-role
+  - name: prod-project-sync
     description: The "prod" will be applied to the `devops` group.
-    groups: []
+    groups:
+    - devops
     policies:
-      - p, proj:prod:devops, *, *, prod/*, allow
+    - p, proj:prod:prod-project-sync, applications, get, *, allow
+    - p, proj:prod:prod-project-sync, applications, sync, *, allow
     

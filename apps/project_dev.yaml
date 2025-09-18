@@ -11,3 +11,17 @@ spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
+  roles:
+  - name: dev-project-readonly
+    description: The "prod" will be applied to the `devops` group.
+    groups:
+    - dev
+    - devops
+    policies:
+    - p, proj:dev:dev-project-readonly, applications, get, *, allow
+  - name: dev-project-sync
+    description: The "prod" will be applied to the `devops` group.
+    groups:
+    - dev
+    policies:
+    - p, proj:dev:dev-project-sync, applications, sync, *, allow
