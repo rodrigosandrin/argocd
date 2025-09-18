@@ -13,7 +13,7 @@ spec:
           env: 'dev'
       values:
         revision: dev
-        project: dev
+        project: default
 
   - clusters:
       selector:
@@ -21,7 +21,7 @@ spec:
           env: 'prod'
       values:
         revision: main
-        project: prod
+        project: default
 
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
