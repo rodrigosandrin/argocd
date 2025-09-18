@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: prod
+spec:
+  sourceRepos:
+  - '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  roles:
+  - name: prod-project-role
+    description: The "prod" will be applied to the `devops` group.
+    groups: []
+    policies:
+      - p, proj:prod:devops, *, *, prod/*, allow
+    

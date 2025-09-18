@@ -19,7 +19,7 @@ spec:
           env: 'prod'
       values:
         revision: main
-        project: default
+        project: prod
 
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
