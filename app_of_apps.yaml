@@ -8,6 +8,7 @@ spec:
   source:
     repoURL: https://github.com/rodrigosandrin/argocd.git
     targetRevision: main
+    path: .
     directory:
       include: 'app_of_apps.yaml'
   destination:
