@@ -32,6 +32,7 @@ spec:
   templatePatch: |
     {{- if eq .metadata.labels.env "dev" }}
     spec:
+      project: dev
       syncPolicy:
         automated:        
           prune: true
