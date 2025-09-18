@@ -12,10 +12,6 @@ spec:
       values:
         revision: dev
         project: dev
-        syncPolicy: |
-          automated:
-            prune: true
-            selfHeal: false
 
   - clusters:
       selector:
@@ -24,7 +20,6 @@ spec:
       values:
         revision: main
         project: default
-        syncPolicy:
 
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -45,13 +40,15 @@ spec:
         # destination server will be filled per-cluster by the generator
         server: '{{.server}}'
         namespace: myimage
-      syncPolicy: |
-        {{.values.syncPolicy}}
-  # templatePatch: |
-  #   {{- if eq .metadata.labels.env "dev" }}
-  #   spec:
-  #     syncPolicy:
-  #       automated:        
-  #         prune: true
-  #         selfHeal: false
-  #   {{- end }}
+      # syncPolicy:
+      #   automated:
+      #     prune: true
+      #     selfHeal: false
+  templatePatch: |
+    {{- if eq .metadata.labels.env "dev" }}
+    spec:
+      syncPolicy:
+        automated:        
+          prune: true
+          selfHeal: false
+    {{- end }}
