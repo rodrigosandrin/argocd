@@ -3,8 +3,6 @@ kind: ApplicationSet
 metadata:
   name: myimage-appset
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   generators:
   - clusters:
