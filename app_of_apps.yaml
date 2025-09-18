@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-of-apps
+  name: argo-self-manager
   namespace: argocd
 spec:
   project: default
@@ -14,11 +14,15 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: apps
+  name: app-of-apps
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
