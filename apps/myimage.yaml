@@ -3,6 +3,8 @@ kind: ApplicationSet
 metadata:
   name: myimage-appset
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   generators:
   - clusters:
@@ -25,7 +27,6 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   template:
     metadata:
-      # each generated Application will be named <cluster-name>-myimage
       name: 'myimage-{{.metadata.labels.env}}-{{.name}}'
       labels:
         app.kubernetes.io/name: myimage
