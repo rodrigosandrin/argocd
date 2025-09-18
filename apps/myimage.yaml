@@ -5,7 +5,22 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - clusters: {}
+  - clusters:
+      selector:
+        matchLabels:
+          env: 'dev'
+      values:
+        revision: dev
+        project: dev
+
+  - clusters:
+      selector:
+        matchLabels:
+          env: 'prod'
+      values:
+        revision: main
+        project: default
+
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   template:
@@ -16,10 +31,10 @@ spec:
         app.kubernetes.io/name: myimage
         env: '{{.metadata.labels.env}}'
     spec:
-      project: default
+      project: '{{.values.project}}'
       source:
         repoURL: https://github.com/rodrigosandrin/argocd.git
-        targetRevision: '{{.metadata.labels.branch}}'
+        targetRevision: '{{.values.revision}}'
         path: myimage/overlay/{{.metadata.labels.env}}/
       destination:
         # destination server will be filled per-cluster by the generator
@@ -32,7 +47,6 @@ spec:
   templatePatch: |
     {{- if eq .metadata.labels.env "dev" }}
     spec:
-      project: dev
       syncPolicy:
         automated:        
           prune: true
