@@ -1,2 +1,5 @@
 resources:
-  - ../../base
+- ../../base
+images:
+- name: artifactory.oneeuronet.com/oen-oneeuronet-images/myimage
+  newTag: 1.0.0
